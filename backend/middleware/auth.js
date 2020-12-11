@@ -3,9 +3,11 @@ const jwt = require("jsonwebtoken");
 
 module.exports = (req, res, next) => {
   try {
-    const token = req.headers.authorization.split(" ")[1]; // Récupère uniquement la partie correspondant au token dans les headers
-    const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET_KEY);
-    const { userId } = decodedToken;
+    // Get only the part corresponding to the token in the headers
+    const token = req.headers.authorization.split(" ")[1];
+    // const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET_KEY);
+    const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
+    const userId = decodedToken.userId;
 
     if (req.body.userId && req.body.userId !== userId) {
       throw new Error("ID utilisateur non valable !");
