@@ -16,7 +16,7 @@ const userRoutes = require("./routes/user");
 const sauceRoutes = require("./routes/sauce");
 
 // Connection MangoDB DataBase
-mongoose.connect('mongodb+srv://wilsonWFU:edd1sson3@clusterp6.vrf2v.mongodb.net/ClusterP6?retryWrites=true&w=majority',
+mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_URL}`,
   { useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true })

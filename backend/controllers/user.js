@@ -26,8 +26,8 @@ exports.signup = (req, res) => {
     }
   };
 
-  // Connect a user
-  exports.login = (req, res) => {
+// Connect a user
+exports.login = (req, res) => {
 
     User.findOne({ email: req.body.email })
       .then(user => {
@@ -46,7 +46,7 @@ exports.signup = (req, res) => {
               userId: user._id,
               token: jwt.sign(
                 { userId: user._id },
-                'RANDOM_TOKEN_SECRET',
+                process.env.TOKEN_SECRET_KEY,
                 { expiresIn: "24h" },
               ),
               
